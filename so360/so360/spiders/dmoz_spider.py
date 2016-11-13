@@ -21,28 +21,19 @@ class DmozSpider(scrapy.Spider):
     name = "360"
     start_urls = []
 
-    csvfile = file('/Users/sunjian/Desktop/hc项目/domain_drqz/待选.csv', 'rb')
-    reader = csv.reader(csvfile)
+    for line in open('/Users/sunjian/Desktop/hc项目/domain_drqz/222'):
+        line = line.strip()
+        word = line.split(',')[0]
+        sr = line.split(',')[1]
+        url_so = 'http://www.so.com/s?a=index&q=site:%s' % word
 
-    for line in reader:
-        word = line[0]
-        bd_index = line[1]
-        daopai = line[2]
-        sr = line[3]
-
-        url_bd = 'https://www.so.com/s?q=site%%3A%s&data=%s_%s_%s' % (word,bd_index,daopai,sr)
-
-        start_urls.append(url_bd)
+        start_urls.append(url_so)
 
     def parse(self,response):
 
         # 提取查询domain
-        word = search(r'site%3A(.*?)&data',response.url)
-        data = search(r'&data=(.*)',response.url)
-
-        bd_index = data.split('_')[0]
-        daopai = data.split('_')[1]
-        sr = data.split('_')[2]
+        print response.url
+        word = search(r'site:(.*)',response.url)
 
         html = response.body
 
@@ -57,9 +48,6 @@ class DmozSpider(scrapy.Spider):
 
         item = So360Item()
         item['word'] = word
-        item['bd_index'] = bd_index
-        item['daopai'] = daopai
-        item['sr'] = sr
         item['score'] = score
         yield item
 

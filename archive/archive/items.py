@@ -7,8 +7,8 @@
 
 import scrapy
 
-class So360Item(scrapy.Item):
+
+class ArchiveItem(scrapy.Item):
     # define the fields for your item here like:
-    word = scrapy.Field()
-    score = scrapy.Field()
+    # name = scrapy.Field()
     pass

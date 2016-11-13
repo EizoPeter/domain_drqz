@@ -7,8 +7,9 @@
 
 import scrapy
 
-class So360Item(scrapy.Item):
+
+class SgsrItem(scrapy.Item):
     # define the fields for your item here like:
-    word = scrapy.Field()
-    score = scrapy.Field()
+    domain = scrapy.Field()
+    sgsr = scrapy.Field()
     pass

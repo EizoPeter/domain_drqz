@@ -15,6 +15,5 @@ class DomainFilterItem(scrapy.Item):
     pan_analysis = scrapy.Field()
     illegal = scrapy.Field()
     sgsr = scrapy.Field()
-    current_time = scrapy.Field()
     url = scrapy.Field()
     pass
